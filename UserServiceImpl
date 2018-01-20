@@ -1,0 +1,6 @@
+public class UserServiceImpl implements UserService {
+    public int save(String name) {
+        System.out.println(name);
+        return 0;
+    }
+}
