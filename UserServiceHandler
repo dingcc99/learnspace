@@ -1,0 +1,25 @@
+import java.lang.reflect.InvocationHandler;
+import java.lang.reflect.Method;
+
+public class UserServiceHandler implement InvocationHandler {
+    private Object target;
+    public UserServiceHandler {
+        super();
+    }
+    public UserServiceHandler(Object target) {
+        super();
+        this.target = target;
+    }
+    @Override
+    public Object invoke(Object proxy, Method method, Object[] args) {
+        if ("save".equals(method.getName()) {
+            System.out.println("+++++++" + method.getName() + "++++++");
+            Objecct result = method.invoke(target, args);
+            System.out.println("+++++++" + method.getName() + "++++++");
+            return result;
+        } else {
+            Object result = method.invoke(target, args);
+            return result;
+        }
+    }
+}
