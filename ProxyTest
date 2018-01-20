@@ -1,0 +1,23 @@
+import java.lang.reflect.Proxy;
+
+import net.sf.cglib.proxy.Enhancer;
+/**
+* author: dingcc
+* date: 2018-1-20 14:32:55
+*/
+public class ProxyTest {
+    public static void main(String[] args) {
+        // java JDK API 实现动态代理
+        //UserService us = (UserService) Proxy.newProxyInstance(UserServiceImpl.class.getClassLoader(),
+            //new UserServiceImpl.getClass().getInterfaces(), new UserServiceHandler(new UserServiceImpl()));
+        //us.save("david");
+        // cglib 实现动态代理
+        CglibProxy cglibProxy = new CglibProxy();
+        Enhancer enhancer = new Enhancer();
+        enhancer.setSuperclass(UserServiceImpl.class);
+        enhancer.setCallback(cglibProxy);
+        
+        UserService us = (UserService) enhancer.create();
+        us.save("david");
+    }
+}
